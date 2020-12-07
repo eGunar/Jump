@@ -11,6 +11,16 @@ Player::Player() {
 	velocity.y = 0; 
 	
 }
+Player::Player(int x, int y, int speed) {
+	texture = TextureManager::LoadTexture("assets/player.png");
+	position.h = 64;
+	position.w = 64;
+	position.x = x;
+	position.y = y;
+
+	velocity.x = speed;
+	velocity.y = 0;
+}
 void Player::Update(double DT)
 {
 	Entity::Update(DT);

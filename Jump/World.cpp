@@ -4,6 +4,7 @@ World::World()
 {
 	Player* player = new Player();
 	Entities.push_back(player);
+	Entities.push_back(new Player(700, 300, -100));
 }
 
 World::~World()
