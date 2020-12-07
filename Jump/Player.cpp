@@ -2,19 +2,18 @@
 #include "TextureManager.h"
 Player::Player() {
 	texture = TextureManager::LoadTexture("assets/player.png");
-	srcRect.h = 64;
-	srcRect.w = 64;
-	srcRect.x = 100;
-	srcRect.y = 100;
+	position.h = 64;
+	position.w = 64;
+	position.x = 100;
+	position.y = 100;
 
-	destRect.h = srcRect.h;
-	destRect.w = srcRect.w;
-	destRect.x = srcRect.x;
-	destRect.y = srcRect.y; 
+	velocity.x = 100;
+	velocity.y = 0; 
 	
 }
 void Player::Update(double DT)
 {
+	Entity::Update(DT);
 }
 
 void Player::HandleEvents(SDL_Event evt)
@@ -23,7 +22,7 @@ void Player::HandleEvents(SDL_Event evt)
 
 void Player::Render()
 {
-	TextureManager::Draw(texture, srcRect, destRect, 0);
+	TextureManager::Draw(texture, position, 0);
 }
 
 void Player::Clean()

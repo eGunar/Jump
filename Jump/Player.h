@@ -11,8 +11,6 @@ public:
 	virtual void Clean() override;
 
 private:
-	SDL_Rect srcRect;
-	SDL_Rect destRect;
 
 	SDL_Texture* texture;
 };

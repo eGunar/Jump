@@ -5,7 +5,7 @@ Game* game = nullptr;
 
 int main(int argc, char* argv[]) {
 	const int FPS = 60;
-	const int frameTime = 1000 / FPS;
+	const double frameTime = 1000 / FPS;
 	const int windowWidth = 1280;
 	const int windowHeight = 720;
 
