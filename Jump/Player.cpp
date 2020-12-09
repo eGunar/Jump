@@ -9,7 +9,7 @@ Player::Player() {
 
 	velocity.x = 0;
 	velocity.y = 0;
-
+	movementController = new MovementController();
 }
 Player::Player(int x, int y, int speed) {
 	texture = TextureManager::LoadTexture("assets/player.png");
@@ -20,9 +20,24 @@ Player::Player(int x, int y, int speed) {
 
 	velocity.x = 0;
 	velocity.y = 0;
+	movementController = new MovementController();
 }
 void Player::Update(double DT)
 {
+	if (!movementController->GetMovingDown() && !movementController->GetMovingUp())
+		velocity.y = Decelerate(Direction::Y);
+	if (!movementController->GetMovingRight() && !movementController->GetMovingLeft())
+		velocity.x = Decelerate(Direction::X);
+
+	if (movementController->GetMovingDown())
+		velocity.y = Accelerate(Direction::Down);
+	if (movementController->GetMovingUp())
+		velocity.y = Accelerate(Direction::UP);
+	if (movementController->GetMovingLeft())
+		velocity.x = Accelerate(Direction::Left);
+	if (movementController->GetMovingRight())
+		velocity.x = Accelerate(Direction::Right);
+
 	Entity::Update(DT);
 }
 
@@ -30,32 +45,37 @@ void Player::HandleEvents(const SDL_Event& evt)
 {
 	// TODO: Ändra om detta, insåg att endast någon form av flagga lär sättas vid olika events. 
 	// Själva förflyttningen bör ske i update. 
+
 	switch (evt.type) {
 	case (SDL_KEYDOWN):
 		switch (evt.key.keysym.sym) {
 		case (GameSettings::moveDown):
-			velocity.y = Accelerate(Direction::Down);
+			movementController->StartMovingDown();
 			break;
 		case (GameSettings::moveUp):
-			velocity.y = Accelerate(Direction::UP);
+			movementController->StartMovingUp();
 			break;
 		case (GameSettings::moveRight):
-			velocity.x = Accelerate(Direction::Right);
+			movementController->StartMovingRight();
 			break;
 		case (GameSettings::moveLeft):
-			velocity.x = Accelerate(Direction::Left);
+			movementController->StartMovingLeft();
 			break;
 		}
 		break;
 	case (SDL_KEYUP):
 		switch (evt.key.keysym.sym) {
 		case(GameSettings::moveDown):
+			movementController->StopMovingDown();
+			break;
 		case(GameSettings::moveUp):
-			velocity.x = Decelerate(Direction::Y);
+			movementController->StopMovingUp();
 			break;
 		case(GameSettings::moveRight):
+			movementController->StopMovingRight();
+			break;
 		case(GameSettings::moveLeft):
-			velocity.x = Decelerate(Direction::X);
+			movementController->StopMovingLeft();
 			break;
 		}
 	}
@@ -63,24 +83,52 @@ void Player::HandleEvents(const SDL_Event& evt)
 
 float Player::Decelerate(Direction direction) {
 	if (direction == Direction::X) {
-		return 0;
+		float currentVelocity = velocity.x;
+		if (currentVelocity == 0)
+			return 0;
+
+		if (currentVelocity > 0) {
+			// Här innebär det att gubben går höger, decelerera ner mot 0
+			if (currentVelocity - accelerationSpeed < 0)
+				return 0;
+			return currentVelocity - accelerationSpeed;
+		}
+		else {
+			// Här innebär det att gubben går vänster, decelerera upp mot 0
+			if (currentVelocity + accelerationSpeed > 0)
+				return 0;
+			return currentVelocity + accelerationSpeed;
+		}
 	}
 	else if (direction == Direction::Y) {
-		return 0;
+		float currentVelocity = velocity.y;
+		if (currentVelocity == 0)
+			return 0;
+
+		if (currentVelocity > 0) {
+			if (currentVelocity - accelerationSpeed < 0)
+				return 0;
+			return currentVelocity - accelerationSpeed;
+		}
+		else {
+			if (currentVelocity + accelerationSpeed > 0)
+				return 0;
+			return currentVelocity + accelerationSpeed;
+		}
 	}
 }
 
 float Player::Accelerate(Direction direction) {
 	if (direction == Direction::UP) {
 		float max = maxSpeed * -1;
-		if (velocity.y >= max) {
+		if (velocity.y <= max) {
 			return max;
 		}
 		return velocity.y - accelerationSpeed;
 	}
 	else if (direction == Direction::Down) {
 		float max = maxSpeed;
-		if (velocity.y <= max) {
+		if (velocity.y >= max) {
 			return max;
 		}
 		return velocity.y + accelerationSpeed;
@@ -103,7 +151,7 @@ float Player::Accelerate(Direction direction) {
 
 void Player::Render()
 {
-	TextureManager::Draw(texture, position, 0);
+	Entity::Render();
 }
 
 void Player::Clean()

@@ -1,9 +1,11 @@
 #include "World.h"
 #include "Player.h"
+#include "Block.h"
 World::World()
 {
 	Player* player = new Player();
 	Entities.push_back(player);
+	Entities.push_back(new Block());
 }
 
 World::~World()

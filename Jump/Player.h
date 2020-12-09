@@ -2,8 +2,10 @@
 #define Player_H
 #pragma once
 #include "Entity.h"
-#include "TextureManager.h"
 #include <vector>
+#include <algorithm>
+#include "GameSettings.h"
+#include "MovementController.h"
 enum class Direction {
 	UP,
 	Down,
@@ -25,11 +27,10 @@ public:
 private:
 	float Accelerate(Direction direction);
 	float Decelerate(Direction direction);
-	SDL_Texture* texture;
-	std::vector<Direction> activeDirections;
+
+	MovementController* movementController;
 };
 
 #endif // !Player_H
 
-#include "GameSettings.h"
 

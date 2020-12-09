@@ -1,16 +1,19 @@
 #pragma once
 #include "SDL.h";
 #include <vector>
+#include "TextureManager.h"
 
 class Entity {
 public:
-	virtual void Update(double DT) = 0;
-	virtual void HandleEvents(const SDL_Event& evt) = 0;
-	virtual void Render() = 0;
-	virtual void Clean() = 0;
+	virtual void Update(double DT);
+	virtual void HandleEvents(const SDL_Event& evt);
+	virtual void Render();
+	virtual void Clean();
 protected:
 	SDL_Rect velocity;
 	SDL_Rect position;
-	float maxSpeed = 100;
+	float maxSpeed = 500;
 	float accelerationSpeed = 10;
+	bool isSolid = false;
+	SDL_Texture* texture;;
 };

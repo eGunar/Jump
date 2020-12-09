@@ -145,19 +145,24 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Entity.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="GameSettings.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MovementController.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Entity.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameSettings.h" />
+    <ClInclude Include="MovementController.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="SolidEntity.h" />
     <ClInclude Include="TextureManager.h" />
     <ClInclude Include="World.h" />
   </ItemGroup>
