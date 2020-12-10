@@ -28,7 +28,7 @@ private:
 	int Accelerate(Direction direction);
 	int Decelerate(Direction direction);
 
-	MovementController movementController;
+	MovementController* movementController;
 };
 
 #endif // !Player_H

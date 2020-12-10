@@ -5,6 +5,7 @@ class SolidEntity : public Entity {
 
 protected:
 	bool isSolid = true;
+
 };
 
 #pragma once

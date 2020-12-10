@@ -9,6 +9,7 @@ Player::Player() {
 
 	velocity.x = 0;
 	velocity.y = 0;
+	movementController = new MovementController();
 }
 Player::Player(int x, int y, int speed) {
 	texture = TextureManager::LoadTexture("assets/player.png");
@@ -19,21 +20,22 @@ Player::Player(int x, int y, int speed) {
 
 	velocity.x = 0;
 	velocity.y = 0;
+	movementController = new MovementController();
 }
 void Player::Update(double DT)
 {
-	if (!movementController.GetMovingDown() && !movementController.GetMovingUp())
+	if (!movementController->GetMovingDown() && !movementController->GetMovingUp())
 		velocity.y = Decelerate(Direction::Y);
-	if (!movementController.GetMovingRight() && !movementController.GetMovingLeft())
+	if (!movementController->GetMovingRight() && !movementController->GetMovingLeft())
 		velocity.x = Decelerate(Direction::X);
 
-	if (movementController.GetMovingDown())
+	if (movementController->GetMovingDown())
 		velocity.y = Accelerate(Direction::Down);
-	if (movementController.GetMovingUp())
+	if (movementController->GetMovingUp())
 		velocity.y = Accelerate(Direction::UP);
-	if (movementController.GetMovingLeft())
+	if (movementController->GetMovingLeft())
 		velocity.x = Accelerate(Direction::Left);
-	if (movementController.GetMovingRight())
+	if (movementController->GetMovingRight())
 		velocity.x = Accelerate(Direction::Right);
 
 	Entity::Update(DT);
@@ -48,32 +50,32 @@ void Player::HandleEvents(const SDL_Event& evt)
 	case (SDL_KEYDOWN):
 		switch (evt.key.keysym.sym) {
 		case (GameSettings::moveDown):
-			movementController.StartMovingDown();
+			movementController->StartMovingDown();
 			break;
 		case (GameSettings::moveUp):
-			movementController.StartMovingUp();
+			movementController->StartMovingUp();
 			break;
 		case (GameSettings::moveRight):
-			movementController.StartMovingRight();
+			movementController->StartMovingRight();
 			break;
 		case (GameSettings::moveLeft):
-			movementController.StartMovingLeft();
+			movementController->StartMovingLeft();
 			break;
 		}
 		break;
 	case (SDL_KEYUP):
 		switch (evt.key.keysym.sym) {
 		case(GameSettings::moveDown):
-			movementController.StopMovingDown();
+			movementController->StopMovingDown();
 			break;
 		case(GameSettings::moveUp):
-			movementController.StopMovingUp();
+			movementController->StopMovingUp();
 			break;
 		case(GameSettings::moveRight):
-			movementController.StopMovingRight();
+			movementController->StopMovingRight();
 			break;
 		case(GameSettings::moveLeft):
-			movementController.StopMovingLeft();
+			movementController->StopMovingLeft();
 			break;
 		}
 	}

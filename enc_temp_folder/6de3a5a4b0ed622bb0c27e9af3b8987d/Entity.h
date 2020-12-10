@@ -2,12 +2,9 @@
 #include "SDL.h"
 #include <vector>
 #include "TextureManager.h"
-#include "Physics.h"
 
 class Entity {
 public:
-	Entity(bool usePhysics = false);
-	~Entity();
 	virtual void Update(double DT);
 	virtual void HandleEvents(const SDL_Event& evt);
 	virtual void Render();
@@ -20,8 +17,5 @@ protected:
 	bool isSolid = false;
 	SDL_Texture* texture;
 	bool afffectedByGravity;
-
-private:
-	Physics* physics;
 
 };

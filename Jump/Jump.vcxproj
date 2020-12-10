@@ -151,6 +151,7 @@
     <ClCompile Include="GameSettings.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MovementController.cpp" />
+    <ClCompile Include="Physics.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="TextureManager.cpp" />
     <ClCompile Include="World.cpp" />
@@ -161,6 +162,7 @@
     <ClInclude Include="Game.h" />
     <ClInclude Include="GameSettings.h" />
     <ClInclude Include="MovementController.h" />
+    <ClInclude Include="Physics.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="SolidEntity.h" />
     <ClInclude Include="TextureManager.h" />
