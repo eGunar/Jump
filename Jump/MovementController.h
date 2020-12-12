@@ -1,6 +1,6 @@
-#pragma once
 #ifndef MovementController_H
 #define MovementController_H
+#pragma once
 
 class MovementController {
 public:

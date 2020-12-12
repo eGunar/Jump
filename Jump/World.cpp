@@ -1,6 +1,4 @@
 #include "World.h"
-#include "Player.h"
-#include "Block.h"
 World::World()
 {
 	Player* player = new Player();

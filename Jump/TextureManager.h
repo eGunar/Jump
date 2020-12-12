@@ -1,3 +1,6 @@
+#ifndef TextureManager_H
+#define TextureManager_H
+
 #pragma once
 #include "SDL.h"
 
@@ -13,3 +16,4 @@ public:
 
 	static void Draw(SDL_Rect rect);
 };
+#endif

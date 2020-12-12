@@ -1,5 +1,5 @@
 #include "Entity.h"
-
+#include "Physics.h"
 Entity::Entity(bool usePhysics)
 {
 	if (usePhysics)
@@ -18,7 +18,7 @@ void Entity::Update(double DT) {
 	position.x += velocity.x * DT;
 	position.y += velocity.y * DT;
 	if (physics != nullptr)
-		physics->ApplyGravity(velocity.y);
+		physics->ApplyGravity(this);
 }
 
 void Entity::HandleEvents(const SDL_Event& evt)
@@ -32,4 +32,24 @@ void Entity::Render()
 
 void Entity::Clean()
 {
+}
+
+void Entity::SetVelocityY(int v)
+{
+	velocity.y = v;
+}
+
+void Entity::SetVelocityX(int v)
+{
+	velocity.x = v;
+}
+
+int Entity::GetVelocityY()
+{
+	return velocity.y;
+}
+
+int Entity::GetVelocityX()
+{
+	return velocity.x;
 }

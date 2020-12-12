@@ -1,15 +1,15 @@
 #ifndef Phyiscs_H
-#include "Player.h"
+#define Physics_H
+#include "GameSettings.h"
 #pragma once
 
-
+class Entity;
 class Physics {
 
 public:
-	void ApplyGravity(int velocityY);
+	void ApplyGravity(Entity* entity);
 	void Update(Entity* entity);
 private:
-	const int gravity = 5;
 };
 
 #endif // !Phyiscs_H

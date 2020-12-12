@@ -68,9 +68,6 @@
     <ClInclude Include="MovementController.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="SolidEntity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Block.h">
       <Filter>Header Files</Filter>
     </ClInclude>

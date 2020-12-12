@@ -1,11 +1,11 @@
 #include "Physics.h"
-
-void Physics::ApplyGravity(int velocityY)
+#include "Entity.h"
+void Physics::ApplyGravity(Entity* entity)
 {
-	velocityY = velocityY + gravity;
+	entity->SetVelocityY(entity->GetVelocityY() + GameSettings::gravity);
 }
 
 void Physics::Update(Entity* entity)
 {
-	ApplyGravity(entity)
+	ApplyGravity(entity);
 }

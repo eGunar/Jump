@@ -1,6 +1,11 @@
+#ifndef WORLD_H
+#define WORLD_H
 #pragma once
+
 #include <vector>
 #include "Entity.h"
+#include "Block.h"
+#include "Player.h"
 
 class World {
 public:
@@ -12,3 +17,4 @@ public:
 private:
 	std::vector<Entity*> Entities;
 };
+#endif

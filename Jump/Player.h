@@ -2,7 +2,6 @@
 #define Player_H
 #pragma once
 #include "Entity.h"
-#include <vector>
 #include <algorithm>
 #include "GameSettings.h"
 #include "MovementController.h"
@@ -32,5 +31,3 @@ private:
 };
 
 #endif // !Player_H
-
-
