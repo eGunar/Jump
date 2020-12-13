@@ -3,7 +3,11 @@ World::World()
 {
 	Player* player = new Player();
 	Entities.push_back(player);
-	Entities.push_back(new Block());
+	
+	for (int i = 1; i < 30; i++) {
+		Entities.push_back(new Block(32 * i, 600));
+	}
+	
 }
 
 World::~World()

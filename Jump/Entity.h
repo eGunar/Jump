@@ -22,6 +22,12 @@ public:
 	bool HasCollisionDetection();
 	const SDL_Rect* GetPosition();
 	virtual void HandleCollision(std::vector<Entity*> collidingEntities);
+	virtual void CollisionsStopped();
+	int Top();
+	int Bottom();
+	int Left();
+	int Right();
+	virtual bool IsOnGround();
 protected:
 	int maxSpeed = 500;
 	int accelerationSpeed = 10;

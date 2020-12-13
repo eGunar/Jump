@@ -14,7 +14,29 @@ const SDL_Rect* Entity::GetPosition() {
 }
 void Entity::HandleCollision(std::vector<Entity*> collidingEntities)
 {
-	std::printf("Colliding");
+}
+void Entity::CollisionsStopped()
+{
+}
+int Entity::Top()
+{
+	return position.y;
+}
+int Entity::Bottom()
+{
+	return position.y + position.h;
+}
+int Entity::Left()
+{
+	return position.x;
+}
+int Entity::Right()
+{
+	return position.x + position.w;
+}
+bool Entity::IsOnGround()
+{
+	return false;
 }
 bool Entity::HasCollisionDetection() {
 	return hasCollision;
@@ -22,13 +44,11 @@ bool Entity::HasCollisionDetection() {
 
 Entity::~Entity()
 {
-	if (physics != nullptr)
-		delete physics;
+	
 }
 
 void Entity::Update(double DT) {
-	previousPosition.x = position.x;
-	previousPosition.y = position.y;
+	previousPosition = position;
 	
 	position.x += velocity.x * DT;
 	position.y += velocity.y * DT;
@@ -47,6 +67,8 @@ void Entity::Render()
 
 void Entity::Clean()
 {
+	if (physics != nullptr)
+		delete physics;
 }
 
 void Entity::SetVelocityY(int v)

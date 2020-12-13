@@ -5,7 +5,7 @@
 
 class Block : public Entity {
 public:
-	Block();
+	Block(int x, int y);
 };
 
 #endif // !Block_H

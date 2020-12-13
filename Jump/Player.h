@@ -20,13 +20,16 @@ public:
 	// Inherited via Entity
 	virtual void Update(double DT) override;
 	virtual void HandleEvents(const SDL_Event& evt) override;
+	void HandleCollision(std::vector<Entity*> collidingEntities) override;
 	virtual void Render() override;
 	virtual void Clean() override;
+	bool IsOnGround() override;
+	void CollisionsStopped() override;
 
 private:
 	int Accelerate(Direction direction);
 	int Decelerate(Direction direction);
-
+	bool isOnGround = false;
 	MovementController movementController;
 };
 

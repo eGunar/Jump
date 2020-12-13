@@ -9,8 +9,9 @@ class Physics {
 
 public:
 	Physics(bool gravity = false, bool collision = false);
+	~Physics();
 	void Update(Entity* entity);
-	std::vector<Entity*> IsColliding(Entity* entity);
+	std::vector<Entity*> GetCollidingEntities(Entity* entity);
 private:
 	void ApplyGravity(Entity* entity);
 	void HandleCollision(Entity* entity);

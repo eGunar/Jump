@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player() : Entity(true, false, true) {
+Player::Player() : Entity(true, true, true) {
 	texture = TextureManager::LoadTexture("assets/player.png");
 	position.h = 64;
 	position.w = 64;
@@ -22,8 +22,8 @@ Player::Player(int x, int y, int speed) {
 }
 void Player::Update(double DT)
 {
-	if (!movementController.GetMovingDown() && !movementController.GetMovingUp())
-		velocity.y = Decelerate(Direction::Y);
+	/*if (!movementController.GetMovingDown() && !movementController.GetMovingUp())
+		velocity.y = Decelerate(Direction::Y); */
 	if (!movementController.GetMovingRight() && !movementController.GetMovingLeft())
 		velocity.x = Decelerate(Direction::X);
 
@@ -76,6 +76,18 @@ void Player::HandleEvents(const SDL_Event& evt)
 			movementController.StopMovingLeft();
 			break;
 		}
+	}
+}
+
+void Player::HandleCollision(std::vector<Entity*> collidingEntities)
+{
+	for (Entity* entity : collidingEntities){
+		if (Bottom() > entity->Top() && (Left() >= entity->Left() || Right() <= entity->Right())) {
+			position = previousPosition;
+			velocity.y = 0;
+			break;
+		}
+
 	}
 }
 
@@ -156,4 +168,15 @@ void Player::Render()
 
 void Player::Clean()
 {
+	Entity::Clean();
+}
+
+bool Player::IsOnGround()
+{
+	return isOnGround;
+}
+
+void Player::CollisionsStopped()
+{
+	isOnGround = false;
 }
