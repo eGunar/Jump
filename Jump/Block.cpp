@@ -1,6 +1,6 @@
 #include "Block.h"
 
-Block::Block()
+Block::Block() : Entity(true, false, true)
 {
 	texture = TextureManager::LoadTexture("assets/brick.png");
 	position.x = 200;

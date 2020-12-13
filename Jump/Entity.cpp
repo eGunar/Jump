@@ -1,9 +1,9 @@
 #include "Entity.h"
 #include "Physics.h"
-Entity::Entity(bool usePhysics)
+Entity::Entity(bool usePhysics, bool gravity, bool collision)
 {
 	if (usePhysics)
-		physics = new Physics();
+		physics = new Physics(gravity, collision);
 	else
 		physics = nullptr;
 }

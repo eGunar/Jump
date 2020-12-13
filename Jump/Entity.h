@@ -9,7 +9,7 @@
 class Physics;
 class Entity {
 public:
-	Entity(bool usePhysics = false);
+	Entity(bool usePhysics = false, bool gravity = false, bool collision = false);
 	~Entity();
 	virtual void Update(double DT);
 	virtual void HandleEvents(const SDL_Event& evt);
@@ -24,7 +24,6 @@ protected:
 	int accelerationSpeed = 10;
 	bool isSolid = false;
 	SDL_Texture* texture;
-	bool afffectedByGravity;
 	SDL_Rect velocity;
 	SDL_Rect position;
 
