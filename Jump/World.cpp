@@ -34,3 +34,19 @@ void World::Render()
 		entity->Render();
 	}
 }
+/// <summary>
+/// Get all possible entities the given entity can collide with
+/// </summary>
+/// <param name="entity"></param>
+/// <returns></returns>
+std::vector<Entity*> World::GetCollidableEntities(Entity* ent)
+{
+	std::vector<Entity*> entities;
+	for (Entity* entity : Entities) {
+		if (entity == ent)
+			continue;
+		if (entity->HasCollisionDetection())
+			entities.push_back(entity);
+	}
+	return entities;
+}

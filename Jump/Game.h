@@ -20,11 +20,11 @@ public:
 
 	bool running() { return isRunning; }
 
+	static World* world;
 	static SDL_Renderer* renderer;
 private:
 	bool isRunning;
 	SDL_Window* window;
-	World* world;
 };
 
 

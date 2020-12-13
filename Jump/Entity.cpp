@@ -6,6 +6,18 @@ Entity::Entity(bool usePhysics, bool gravity, bool collision)
 		physics = new Physics(gravity, collision);
 	else
 		physics = nullptr;
+
+	hasCollision = collision;
+}
+const SDL_Rect* Entity::GetPosition() {
+	return &position;
+}
+void Entity::HandleCollision(std::vector<Entity*> collidingEntities)
+{
+	std::printf("Colliding");
+}
+bool Entity::HasCollisionDetection() {
+	return hasCollision;
 }
 
 Entity::~Entity()
@@ -15,10 +27,13 @@ Entity::~Entity()
 }
 
 void Entity::Update(double DT) {
+	previousPosition.x = position.x;
+	previousPosition.y = position.y;
+	
 	position.x += velocity.x * DT;
 	position.y += velocity.y * DT;
 	if (physics != nullptr)
-		physics->ApplyGravity(this);
+		physics->Update(this);
 }
 
 void Entity::HandleEvents(const SDL_Event& evt)

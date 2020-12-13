@@ -1,12 +1,11 @@
 #include "Game.h"
 
 SDL_Renderer* Game::renderer = nullptr;
-
+World* Game::world = nullptr;
 Game::Game()
 {
 	isRunning = false;
 	window = nullptr;
-	world = nullptr;
 }
 
 Game::~Game()

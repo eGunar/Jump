@@ -19,6 +19,9 @@ public:
 	void SetVelocityX(int v);
 	int GetVelocityY();
 	int GetVelocityX();
+	bool HasCollisionDetection();
+	const SDL_Rect* GetPosition();
+	virtual void HandleCollision(std::vector<Entity*> collidingEntities);
 protected:
 	int maxSpeed = 500;
 	int accelerationSpeed = 10;
@@ -26,10 +29,11 @@ protected:
 	SDL_Texture* texture;
 	SDL_Rect velocity;
 	SDL_Rect position;
+	SDL_Rect previousPosition;
 
 private:
 	Physics* physics;
-
+	bool hasCollision = false;
 };
 
 

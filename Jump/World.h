@@ -14,6 +14,7 @@ public:
 	void Update(double DT);
 	void HandleEvents(SDL_Event evt);
 	void Render();
+	std::vector<Entity*> GetCollidableEntities(Entity* entitiy);
 private:
 	std::vector<Entity*> Entities;
 };

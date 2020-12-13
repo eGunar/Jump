@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player() : Entity(true, true, true) {
+Player::Player() : Entity(true, false, true) {
 	texture = TextureManager::LoadTexture("assets/player.png");
 	position.h = 64;
 	position.w = 64;
