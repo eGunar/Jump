@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\PlayerStates">
+      <UniqueIdentifier>{61eb3a66-8fc2-494b-939f-577789d9271a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\PlayerStates">
+      <UniqueIdentifier>{81b11692-ed28-4988-a1b7-79f61c15654c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -45,6 +51,15 @@
     <ClCompile Include="Physics.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="IdleState.cpp">
+      <Filter>Source Files\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="RunningState.cpp">
+      <Filter>Source Files\PlayerStates</Filter>
+    </ClCompile>
+    <ClCompile Include="IPlayerState.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h">
@@ -73,6 +88,15 @@
     </ClInclude>
     <ClInclude Include="Physics.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="IdleState.h">
+      <Filter>Header Files\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="IPlayerState.h">
+      <Filter>Header Files\PlayerStates</Filter>
+    </ClInclude>
+    <ClInclude Include="RunningState.h">
+      <Filter>Header Files\PlayerStates</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -1,10 +1,13 @@
 #ifndef Player_H
 #define Player_H
-#pragma once
 #include "Entity.h"
 #include <algorithm>
 #include "GameSettings.h"
 #include "MovementController.h"
+#include "IPlayerState.h"
+#include "IdleState.h"
+#include "RunningState.h"
+#pragma once
 enum class Direction {
 	UP,
 	Down,
@@ -27,10 +30,15 @@ public:
 	void CollisionsStopped() override;
 
 private:
+	void InitStates();
 	int Accelerate(Direction direction);
 	int Decelerate(Direction direction);
 	bool isOnGround = false;
 	MovementController movementController;
+	IdleState idleState;
+	RunningState runningState;
+
+	IPlayerState* GetCurrentState();
 };
 
 #endif // !Player_H

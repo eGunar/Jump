@@ -53,7 +53,7 @@ void Entity::Update(double DT) {
 	position.x += velocity.x * DT;
 	position.y += velocity.y * DT;
 	if (physics != nullptr)
-		physics->Update(this);
+		physics->Update(this, DT);
 }
 
 void Entity::HandleEvents(const SDL_Event& evt)

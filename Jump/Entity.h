@@ -1,10 +1,10 @@
 #ifndef Entity_H
 #define Entity_H
 
-#pragma once
 #include "SDL.h"
 #include <vector>
 #include "TextureManager.h"
+#pragma once
 
 class Physics;
 class Entity {
@@ -30,7 +30,7 @@ public:
 	virtual bool IsOnGround();
 protected:
 	int maxSpeed = 500;
-	int accelerationSpeed = 10;
+	int accelerationSpeed = 30;
 	bool isSolid = false;
 	SDL_Texture* texture;
 	SDL_Rect velocity;
