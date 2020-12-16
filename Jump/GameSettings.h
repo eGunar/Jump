@@ -9,8 +9,9 @@ public:
 	const static SDL_KeyCode moveRight = SDLK_d;
 	const static SDL_KeyCode moveUp = SDLK_w;
 	const static SDL_KeyCode moveDown = SDLK_s;
-	const static int gravity = 15;
-
+	const static int gravity = 50;
+	const static int accelerationSpeed = 40;
+	const static int maxSpeed = 500;
 };
 
 

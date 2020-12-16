@@ -9,10 +9,10 @@ Physics::Physics(bool gravity, bool collision)
 Physics::~Physics()
 {
 }
-void Physics::ApplyGravity(Entity* entity, double DT)
+void Physics::ApplyGravity(Entity* entity)
 {
 	if (!entity->IsOnGround())
-		entity->SetVelocityY(entity->GetVelocityY() + GameSettings::gravity * DT);
+		entity->SetVelocityY(entity->GetVelocityY() + GameSettings::gravity);
 }
 void Physics::HandleCollision(Entity* entity)
 {
@@ -39,7 +39,7 @@ std::vector<Entity*> Physics::GetCollidingEntities(Entity* entity)
 void Physics::Update(Entity* entity, double DT)
 {
 	if (affectedByGravity)
-		ApplyGravity(entity, DT);
+		ApplyGravity(entity);
 	if (detectCollision)
 		HandleCollision(entity);
 }

@@ -36,7 +36,7 @@ void Game::Init(const char* title, int xpos, int ypos, int width, int height, bo
 			SDL_SetRenderDrawColor(renderer, 66, 135, 245, 100);
 			std::cout << "Renderer created\n";
 		}
-		world = new World();
+		Game::world = new World();
 		isRunning = true;
 	}
 	else
@@ -49,7 +49,7 @@ void Game::HandleEvents()
 {
 	SDL_Event event;
 	SDL_PollEvent(&event);
-	world->HandleEvents(event);
+	Game::world->HandleEvents(event);
 	switch (event.type) {
 	case SDL_QUIT:
 		isRunning = false;
@@ -61,19 +61,19 @@ void Game::HandleEvents()
 
 void Game::Update(double dt)
 {
-	world->Update(dt);
+	Game::world->Update(dt);
 }
 
 void Game::Render()
 {
 	SDL_RenderClear(renderer);
-	world->Render();
+	Game::world->Render();
 	SDL_RenderPresent(renderer);
 }
 
 void Game::Clean()
 {
-	delete world;
+	delete Game::world;
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();

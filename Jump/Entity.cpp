@@ -49,7 +49,6 @@ Entity::~Entity()
 
 void Entity::Update(double DT) {
 	previousPosition = position;
-	
 	position.x += velocity.x * DT;
 	position.y += velocity.y * DT;
 	if (physics != nullptr)

@@ -29,8 +29,6 @@ public:
 	int Right();
 	virtual bool IsOnGround();
 protected:
-	int maxSpeed = 500;
-	int accelerationSpeed = 30;
 	bool isSolid = false;
 	SDL_Texture* texture;
 	SDL_Rect velocity;

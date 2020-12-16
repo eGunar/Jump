@@ -90,7 +90,7 @@ void Player::HandleCollision(std::vector<Entity*> collidingEntities)
 		if (Bottom() > entity->Top() && (Left() >= entity->Left() || Right() <= entity->Right())) {
 			position = previousPosition;
 			velocity.y = 0;
-			isOnGround = true;
+			//isOnGround = true;
 			break;
 		}
 
@@ -98,7 +98,7 @@ void Player::HandleCollision(std::vector<Entity*> collidingEntities)
 }
 
 int Player::Decelerate(Direction direction) {
-	const int deccSpeed = accelerationSpeed * 2;
+	const int deccSpeed = GameSettings::accelerationSpeed * 2;
 	if (direction == Direction::X) {
 		int currentVelocity = velocity.x;
 		if (currentVelocity == 0)
@@ -146,32 +146,32 @@ IPlayerState* Player::GetCurrentState()
 
 int Player::Accelerate(Direction direction) {
 	if (direction == Direction::UP) {
-		float max = maxSpeed * -1;
+		float max = GameSettings::maxSpeed * -1;
 		if (velocity.y <= max) {
 			return max;
 		}
-		return velocity.y - accelerationSpeed;
+		return velocity.y - GameSettings::accelerationSpeed;
 	}
 	else if (direction == Direction::Down) {
-		float max = maxSpeed;
+		float max = GameSettings::maxSpeed;
 		if (velocity.y >= max) {
 			return max;
 		}
-		return velocity.y + accelerationSpeed;
+		return velocity.y + GameSettings::accelerationSpeed;
 	}
 	else if (direction == Direction::Left) {
-		float max = maxSpeed * -1;
+		float max = GameSettings::maxSpeed * -1;
 		if (velocity.x <= max) {
 			return max;
 		}
-		return velocity.x - accelerationSpeed;
+		return velocity.x - GameSettings::accelerationSpeed;
 	}
 	else if (direction == Direction::Right) {
-		float max = maxSpeed;
+		float max = GameSettings::maxSpeed;
 		if (velocity.x >= max) {
 			return max;
 		}
-		return velocity.x + accelerationSpeed;
+		return velocity.x + GameSettings::accelerationSpeed;
 	}
 	return 0;
 }
