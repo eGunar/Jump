@@ -27,7 +27,7 @@ public:
 	int Bottom();
 	int Left();
 	int Right();
-	virtual bool IsOnGround();
+	virtual bool ShouldApplyGravity();
 protected:
 	bool isSolid = false;
 	SDL_Texture* texture;

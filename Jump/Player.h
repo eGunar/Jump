@@ -26,7 +26,7 @@ public:
 	void HandleCollision(std::vector<Entity*> collidingEntities) override;
 	virtual void Render() override;
 	virtual void Clean() override;
-	bool IsOnGround() override;
+	bool ShouldApplyGravity() override;
 	void CollisionsStopped() override;
 
 private:

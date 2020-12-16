@@ -34,7 +34,7 @@ int Entity::Right()
 {
 	return position.x + position.w;
 }
-bool Entity::IsOnGround()
+bool Entity::ShouldApplyGravity()
 {
 	return false;
 }

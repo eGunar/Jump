@@ -187,9 +187,9 @@ void Player::Clean()
 	Entity::Clean();
 }
 
-bool Player::IsOnGround()
+bool Player::ShouldApplyGravity()
 {
-	return isOnGround;
+	return !isOnGround;
 }
 
 void Player::CollisionsStopped()
