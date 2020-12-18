@@ -33,8 +33,14 @@ void TextureManager::Draw(SDL_Texture* texture, SDL_Rect src, SDL_Rect dest, dou
 }
 void TextureManager::Draw(SDL_Texture* texture, SDL_Rect dest, double angle)
 {
+	SDL_Rect pos;
+	const SDL_Rect* camPos = GameCamera::GetPosition();
+	pos.x = dest.x - camPos->x;
+	pos.y = dest.y - camPos->y;
+	pos.w = dest.w;
+	pos.h = dest.h;
 	SDL_RendererFlip flip = SDL_FLIP_NONE;
-	int success = SDL_RenderCopyEx(Game::renderer, texture, NULL, &dest, angle, NULL, flip);
+	int success = SDL_RenderCopyEx(Game::renderer, texture, NULL, &pos, angle, NULL, flip);
 	if (success == -1) {
 		printf("Unable to draw! SDL_Error Error: %s\n", SDL_GetError());
 	}

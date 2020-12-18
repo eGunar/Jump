@@ -6,6 +6,7 @@
 #include "Entity.h"
 #include "Block.h"
 #include "Player.h"
+#include "GameCamera.h"
 
 class World {
 public:
@@ -17,5 +18,6 @@ public:
 	std::vector<Entity*> GetCollidableEntities(Entity* entitiy);
 private:
 	std::vector<Entity*> Entities;
+	
 };
 #endif
