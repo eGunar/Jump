@@ -6,16 +6,13 @@ Game* game = nullptr;
 int main(int argc, char* argv[]) {
 	const int FPS = 60;
 	const double frameTime = 1000 / FPS;
-	const int windowWidth = 1280;
-	const int windowHeight = 720;
-
 
 	Uint64 NOW = SDL_GetPerformanceCounter();
 	Uint64 LAST = 0;
 	double DT = 0;
 
 	game = new Game();
-	game->Init("Jump", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, windowWidth, windowHeight, false);
+	game->Init("Jump", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, GameSettings::windowWidth, GameSettings::windowHeight, false);
 
 
 	while (game->running()) {

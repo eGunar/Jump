@@ -7,6 +7,7 @@
 #include "IPlayerState.h"
 #include "IdleState.h"
 #include "RunningState.h"
+#include "GameCamera.h"
 #pragma once
 enum class Direction {
 	UP,

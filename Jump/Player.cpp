@@ -1,10 +1,10 @@
 #include "Player.h"
 
-Player::Player() : Entity(true, true, true) {
+Player::Player() : Entity(true, false, true) {
 	position.h = 64;
 	position.w = 64;
-	position.x = 100;
-	position.y = 100;
+	position.x = 576;
+	position.y = 536;
 
 	velocity.x = 0;
 	velocity.y = 0;
@@ -32,16 +32,22 @@ void Player::Update(double DT)
 	if (!movementController.GetMovingRight() && !movementController.GetMovingLeft())
 		velocity.x = Decelerate(Direction::X);
 
-	if (movementController.GetMovingDown())
+	if (movementController.GetMovingDown()) {
 		velocity.y = Accelerate(Direction::Down);
+	}
 	if (movementController.GetMovingUp())
 		velocity.y = Accelerate(Direction::UP);
-	if (movementController.GetMovingLeft())
+	if (movementController.GetMovingLeft()) {
 		velocity.x = Accelerate(Direction::Left);
-	if (movementController.GetMovingRight())
+	}
+	if (movementController.GetMovingRight()) {
 		velocity.x = Accelerate(Direction::Right);
+	}
+
+	GameCamera::MoveCamera(this);
 
 	Entity::Update(DT);
+	//GameCamera::SetPosition(position.x, position.y);
 }
 
 void Player::HandleEvents(const SDL_Event& evt)
@@ -63,6 +69,18 @@ void Player::HandleEvents(const SDL_Event& evt)
 			break;
 		case (GameSettings::moveLeft):
 			movementController.StartMovingLeft();
+			break;
+		case (SDLK_SPACE):
+			//printf("PlayerPos:\n Top %d\n Bottom: %d\n Left: %d\n Right: %d\n", Top(), Bottom(), Left(), Right());
+			printf("PlayerPos:\n X: %d\n Y: %d\n", position.x, position.y);
+			printf("CameraPos:\n X: %d\n Y: %d\n", GameCamera::GetPosition()->x, GameCamera::GetPosition()->y);
+			printf("calcPos:\n X: %d\n Y: %d\n", GameCamera::Right() - Right(), GameCamera::GetPosition()->y);
+			break;
+		case (SDLK_RIGHT):
+			GameCamera::SetX(GameCamera::GetPosition()->x + 100);
+			break;
+		case (SDLK_LEFT):
+			GameCamera::SetX(GameCamera::GetPosition()->x - 100);
 			break;
 		}
 		break;
@@ -86,11 +104,11 @@ void Player::HandleEvents(const SDL_Event& evt)
 
 void Player::HandleCollision(std::vector<Entity*> collidingEntities)
 {
-	for (Entity* entity : collidingEntities){
+	for (Entity* entity : collidingEntities) {
 		if (Bottom() > entity->Top() && (Left() >= entity->Left() || Right() <= entity->Right())) {
 			position = previousPosition;
 			velocity.y = 0;
-			//isOnGround = true;
+			isOnGround = true;
 			break;
 		}
 

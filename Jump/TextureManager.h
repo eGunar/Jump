@@ -15,5 +15,7 @@ public:
 	static void Draw(SDL_Texture* texture, SDL_Rect dest, double angle);
 
 	static void Draw(SDL_Rect rect);
+
+	static void DrawLines(const SDL_Point* points, int count);
 };
 #endif

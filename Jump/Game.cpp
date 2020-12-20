@@ -66,7 +66,9 @@ void Game::Update(double dt)
 
 void Game::Render()
 {
+	SDL_SetRenderDrawColor(renderer, 66, 135, 245, 100);
 	SDL_RenderClear(renderer);
+
 	Game::world->Render();
 	SDL_RenderPresent(renderer);
 }

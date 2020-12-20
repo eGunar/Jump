@@ -4,7 +4,7 @@ World::World()
 	Player* player = new Player();
 	Entities.push_back(player);
 	
-	for (int i = 1; i < 30; i++) {
+	for (int i = -20; i < 50; i++) {
 		Entities.push_back(new Block(32 * i, 600));
 	}
 	
@@ -37,6 +37,7 @@ void World::Render()
 	for (Entity* entity : Entities) {
 		entity->Render();
 	}
+	GameCamera::Render();
 }
 /// <summary>
 /// Get all possible entities the given entity can collide with

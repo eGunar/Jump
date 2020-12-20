@@ -53,3 +53,12 @@ void TextureManager::Draw(SDL_Rect src)
 		printf("Unable to draw! SDL_Error Error: %s\n", SDL_GetError());
 	}
 }
+
+void TextureManager::DrawLines(const SDL_Point* points, int count)
+{
+	SDL_SetRenderDrawColor(Game::renderer, 255, 255, 255, SDL_ALPHA_OPAQUE);
+	int success = SDL_RenderDrawLines(Game::renderer, points, count);
+	if (success == -1) {
+		printf("Unable to draw lines! SDL_Error Error: %s\n", SDL_GetError());
+	}
+}

@@ -11,7 +11,7 @@ Physics::~Physics()
 }
 void Physics::ApplyGravity(Entity* entity)
 {
-	if (!entity->ShouldApplyGravity())
+	if (entity->ShouldApplyGravity())
 		entity->SetVelocityY(entity->GetVelocityY() + GameSettings::gravity);
 }
 void Physics::HandleCollision(Entity* entity)

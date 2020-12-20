@@ -12,6 +12,8 @@ public:
 	const static int gravity = 50;
 	const static int accelerationSpeed = 40;
 	const static int maxSpeed = 500;
+	const static int windowWidth = 1280;
+	const static int windowHeight = 720;
 };
 
 
