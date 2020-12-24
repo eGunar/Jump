@@ -88,8 +88,6 @@ void GameCamera::MoveCamera(Player* player)
 
 bool GameCamera::ShouldMoveLeft(Player* player)
 {
-	if (player->GetVelocityX() >= 0)
-		return false;
 	int cameraX = position.x;
 	int playerX = player->GetPosition()->x;
 	int relX = abs(cameraX - playerX);
@@ -98,11 +96,9 @@ bool GameCamera::ShouldMoveLeft(Player* player)
 
 bool GameCamera::ShouldMoveRight(Player* player)
 {
-	if (player->GetVelocityX() <= 0)
-		return false;
 	int cameraRight = Right();
 	int playerRight = player->Right();
-	int relX = abs(cameraRight - playerRight);
+	int relX = playerRight - cameraRight;
 	return (relX >= GameCamera::offsetX);
 }
 

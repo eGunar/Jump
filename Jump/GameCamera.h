@@ -20,8 +20,8 @@ public:
 	static int Right();
 	static void MoveCamera(Player* player);
 private:
-	static bool ShouldMoveLeft(Player* player);
 	static bool ShouldMoveRight(Player* player);
+	static bool ShouldMoveLeft(Player* player);
 	static int LocalTop();
 	static int LocalBottom();
 	static int LocalLeft();
