@@ -1,6 +1,6 @@
 #include "Player.h"
 
-Player::Player() : Entity(true, false, true) {
+Player::Player() : Entity(true, true, true) {
 	position.h = 64;
 	position.w = 64;
 	position.x = 576;
@@ -62,7 +62,9 @@ void Player::HandleEvents(const SDL_Event& evt)
 			movementController.StartMovingDown();
 			break;
 		case (GameSettings::moveUp):
-			movementController.StartMovingUp();
+			//movementController.StartMovingUp();
+			if (isOnGround)
+				velocity.y = -1200;
 			break;
 		case (GameSettings::moveRight):
 			movementController.StartMovingRight();
@@ -207,6 +209,7 @@ void Player::Clean()
 
 bool Player::ShouldApplyGravity()
 {
+	return true;
 	return !isOnGround;
 }
 

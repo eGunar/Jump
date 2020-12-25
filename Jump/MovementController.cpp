@@ -10,24 +10,24 @@ MovementController::MovementController() {
 void MovementController::StartMovingUp()
 {
     movingUp = true;
-    movingDown = false;
+    //movingDown = false;
 }
 
 void MovementController::StartMovingDown()
 {
     movingDown = true;
-    movingUp = false;
+    //movingUp = false;
 }
 
 void MovementController::StartMovingRight()
 {
-    movingLeft = false;
+    //movingLeft = false;
     movingRight = true;
 }
 
 void MovementController::StartMovingLeft()
 {
-    movingRight = false;
+    //movingRight = false;
     movingLeft = true;
 }
 
