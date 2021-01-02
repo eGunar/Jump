@@ -22,6 +22,8 @@ public:
 private:
 	static bool ShouldMoveRight(Player* player);
 	static bool ShouldMoveLeft(Player* player);
+	static bool ShouldMoveUp(Player* player);
+	static bool ShouldMoveDown(Player* player);
 	static int LocalTop();
 	static int LocalBottom();
 	static int LocalLeft();
