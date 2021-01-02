@@ -21,18 +21,19 @@ public:
 	int GetVelocityX();
 	bool HasCollisionDetection();
 	const SDL_Rect* GetPosition();
+	const SDL_Rect* GetNextPosition();
 	virtual void HandleCollision(std::vector<Entity*> collidingEntities);
 	virtual void CollisionsStopped();
 	int Top();
 	int Bottom();
 	int Left();
 	int Right();
-	virtual bool ShouldApplyGravity();
 protected:
 	bool isSolid = false;
 	SDL_Texture* texture;
 	SDL_Rect velocity;
 	SDL_Rect position;
+	SDL_Rect nextPosition;
 	SDL_Rect previousPosition;
 
 private:

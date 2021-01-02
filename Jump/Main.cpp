@@ -4,7 +4,7 @@
 Game* game = nullptr;
 
 int main(int argc, char* argv[]) {
-	const int FPS = 60;
+	const double FPS = 120;
 	const double frameTime = 1000 / FPS;
 
 	Uint64 NOW = SDL_GetPerformanceCounter();

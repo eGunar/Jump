@@ -8,6 +8,7 @@
 #include "IdleState.h"
 #include "RunningState.h"
 #include "GameCamera.h"
+#include "Physics.h"
 #pragma once
 enum class Direction {
 	UP,
@@ -27,7 +28,6 @@ public:
 	void HandleCollision(std::vector<Entity*> collidingEntities) override;
 	virtual void Render() override;
 	virtual void Clean() override;
-	bool ShouldApplyGravity() override;
 	void CollisionsStopped() override;
 
 private:

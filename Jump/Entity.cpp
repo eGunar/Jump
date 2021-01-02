@@ -12,6 +12,9 @@ Entity::Entity(bool usePhysics, bool gravity, bool collision)
 const SDL_Rect* Entity::GetPosition() {
 	return &position;
 }
+const SDL_Rect* Entity::GetNextPosition() {
+	return &nextPosition;
+}
 void Entity::HandleCollision(std::vector<Entity*> collidingEntities)
 {
 }
@@ -34,10 +37,7 @@ int Entity::Right()
 {
 	return position.x + position.w;
 }
-bool Entity::ShouldApplyGravity()
-{
-	return false;
-}
+
 bool Entity::HasCollisionDetection() {
 	return hasCollision;
 }
@@ -51,6 +51,8 @@ void Entity::Update(double DT) {
 	previousPosition = position;
 	position.x += velocity.x * DT;
 	position.y += velocity.y * DT;
+	nextPosition.x = position.x += velocity.x * DT;
+	nextPosition.y = position.y += velocity.y * DT;
 	if (physics != nullptr)
 		physics->Update(this, DT);
 }

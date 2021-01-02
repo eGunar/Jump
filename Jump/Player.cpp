@@ -63,8 +63,9 @@ void Player::HandleEvents(const SDL_Event& evt)
 			break;
 		case (GameSettings::moveUp):
 			//movementController.StartMovingUp();
-			if (isOnGround)
-				velocity.y = -1200;
+			//if (isOnGround)
+			velocity.y = -1200;
+			isOnGround = false;
 			break;
 		case (GameSettings::moveRight):
 			movementController.StartMovingRight();
@@ -107,8 +108,10 @@ void Player::HandleEvents(const SDL_Event& evt)
 void Player::HandleCollision(std::vector<Entity*> collidingEntities)
 {
 	for (Entity* entity : collidingEntities) {
-		if (Bottom() > entity->Top() && (Left() >= entity->Left() || Right() <= entity->Right())) {
-			position = previousPosition;
+		if (Bottom() > entity->Top()) {
+		//if (Bottom() > entity->Top() && (Left() >= entity->Left() || Right() <= entity->Right())) {
+			//position = previousPosition;
+			position.y = entity->Top() - position.h;
 			velocity.y = 0;
 			isOnGround = true;
 			break;
@@ -207,13 +210,6 @@ void Player::Clean()
 	Entity::Clean();
 }
 
-bool Player::ShouldApplyGravity()
-{
-	return true;
-	return !isOnGround;
-}
-
 void Player::CollisionsStopped()
 {
-	//isOnGround = false;
 }
