@@ -82,11 +82,10 @@ void GameCamera::MoveCamera(Player* player)
 	if (ShouldMoveRight(player))
 		SetX(GameCamera::position.x + player->Right() - GameCamera::Right() - GameCamera::offsetX);
 	if (ShouldMoveUp(player))
-		SetY(GameCamera::position.y - GameCamera::offsetY);
+		SetY(player->GetPosition()->y - GameCamera::offsetY);
 	if (ShouldMoveDown(player))
 		SetY(GameCamera::position.y + player->Bottom() - GameCamera::Bottom() - GameCamera::offsetY);
 
-	//SetY(player->GetPosition()->y);
 }
 
 bool GameCamera::ShouldMoveLeft(Player* player)
