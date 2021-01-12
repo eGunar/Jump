@@ -1,5 +1,4 @@
 #include "Player.h"
-
 Player::Player() : Entity(true, true, true) {
 	position.h = 64;
 	position.w = 64;
@@ -8,7 +7,8 @@ Player::Player() : Entity(true, true, true) {
 
 	velocity.x = 0;
 	velocity.y = 0;
-	InitStates();
+
+	stateMachine = PlayerStateMachine(this);
 }
 Player::Player(int x, int y, int speed) {
 	texture = TextureManager::LoadTexture("assets/player.png");
@@ -19,13 +19,9 @@ Player::Player(int x, int y, int speed) {
 
 	velocity.x = 0;
 	velocity.y = 0;
-	InitStates();
+	stateMachine = PlayerStateMachine(this);
 }
-void Player::InitStates() {
-	idleState = IdleState("assets/player.png");
-	runningState = RunningState("assets/player_running.png");
 
-}
 void Player::Update(double DT)
 {
 	GetCurrentState()->Update(DT);
@@ -47,73 +43,42 @@ void Player::Update(double DT)
 	GameCamera::MoveCamera(this);
 
 	Entity::Update(DT);
-	//GameCamera::SetPosition(position.x, position.y);
 }
 
 void Player::HandleEvents(const SDL_Event& evt)
 {
-	// TODO: Ändra om detta, insåg att endast någon form av flagga lär sättas vid olika events. 
-	// Själva förflyttningen bör ske i update. 
-
+	GetCurrentState()->HandleEvents(evt);
 	switch (evt.type) {
-	case (SDL_KEYDOWN):
+	case(SDL_KEYDOWN):
 		switch (evt.key.keysym.sym) {
-		case (GameSettings::moveDown):
-			movementController.StartMovingDown();
-			break;
-		case (GameSettings::moveUp):
-			//movementController.StartMovingUp();
-			//if (isOnGround)
-			velocity.y = -1200;
-			isOnGround = false;
-			break;
-		case (GameSettings::moveRight):
-			movementController.StartMovingRight();
-			break;
 		case (GameSettings::moveLeft):
-			movementController.StartMovingLeft();
-			break;
-		case (SDLK_SPACE):
-			//printf("PlayerPos:\n Top %d\n Bottom: %d\n Left: %d\n Right: %d\n", Top(), Bottom(), Left(), Right());
-			printf("PlayerPos:\n X: %d\n Y: %d\n", position.x, position.y);
-			printf("CameraPos:\n X: %d\n Y: %d\n", GameCamera::GetPosition()->x, GameCamera::GetPosition()->y);
-			printf("calcPos:\n X: %d\n Y: %d\n", GameCamera::Right() - Right(), GameCamera::GetPosition()->y);
-			break;
-		case (SDLK_RIGHT):
-			GameCamera::SetX(GameCamera::GetPosition()->x + 100);
-			break;
-		case (SDLK_LEFT):
-			GameCamera::SetX(GameCamera::GetPosition()->x - 100);
+		case (GameSettings::moveRight):
+			if (physics->IsStandingOnBlock(this))
+				stateMachine.SetState(PlayerStates::run);
 			break;
 		}
+
 		break;
-	case (SDL_KEYUP):
-		switch (evt.key.keysym.sym) {
-		case(GameSettings::moveDown):
-			movementController.StopMovingDown();
-			break;
-		case(GameSettings::moveUp):
-			movementController.StopMovingUp();
-			break;
-		case(GameSettings::moveRight):
-			movementController.StopMovingRight();
-			break;
-		case(GameSettings::moveLeft):
-			movementController.StopMovingLeft();
-			break;
-		}
 	}
+}
+
+bool Player::IsOnGround() {
+	return physics->IsStandingOnBlock(this);
+}
+
+void Player::SetPreviousState()
+{
+	stateMachine.SetPreviousState();
 }
 
 void Player::HandleCollision(std::vector<Entity*> collidingEntities)
 {
 	for (Entity* entity : collidingEntities) {
 		if (Bottom() > entity->Top()) {
-		//if (Bottom() > entity->Top() && (Left() >= entity->Left() || Right() <= entity->Right())) {
-			//position = previousPosition;
+			//if (Bottom() > entity->Top() && (Left() >= entity->Left() || Right() <= entity->Right())) {
+				//position = previousPosition;
 			position.y = entity->Top() - position.h;
 			velocity.y = 0;
-			isOnGround = true;
 			break;
 		}
 
@@ -161,10 +126,7 @@ int Player::Decelerate(Direction direction) {
 
 IPlayerState* Player::GetCurrentState()
 {
-	if (velocity.x != 0 || velocity.y != 0)
-		return &runningState;
-
-	return &idleState;
+	return stateMachine.GetCurrentState();
 }
 
 int Player::Accelerate(Direction direction) {
@@ -212,4 +174,14 @@ void Player::Clean()
 
 void Player::CollisionsStopped()
 {
+}
+
+MovementController* Player::GetMovementController()
+{
+	return &movementController;
+}
+
+void Player::SetState(PlayerStates state)
+{
+	stateMachine.SetState(state);
 }

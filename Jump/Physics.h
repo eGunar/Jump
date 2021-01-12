@@ -14,12 +14,12 @@ public:
 	void Update(Entity* entity, double DT);
 	std::vector<Entity*> GetCollidingEntities(Entity* entity);
 	static std::vector<Entity*> GetNextFrameCollidingEntities(Entity* entity);
+	bool IsStandingOnBlock(Entity* entity);
 private:
 	void ApplyGravity(Entity* entity);
 	void HandleCollision(Entity* entity);
 	bool affectedByGravity = false;
 	bool detectCollision = false;
-	bool IsStandingOnBlock(Entity* entity);
 };
 
 #endif // !Phyiscs_H

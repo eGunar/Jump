@@ -4,12 +4,12 @@
 #include <algorithm>
 #include "GameSettings.h"
 #include "MovementController.h"
-#include "IPlayerState.h"
-#include "IdleState.h"
-#include "RunningState.h"
 #include "GameCamera.h"
 #include "Physics.h"
+#include "PlayerStateMachine.h"
 #pragma once
+class IdleState;
+class RunningState;
 enum class Direction {
 	UP,
 	Down,
@@ -29,17 +29,17 @@ public:
 	virtual void Render() override;
 	virtual void Clean() override;
 	void CollisionsStopped() override;
+	MovementController* GetMovementController();
+	void SetState(PlayerStates state);
+	bool IsOnGround();
+	void SetPreviousState();
 
 private:
-	void InitStates();
 	int Accelerate(Direction direction);
 	int Decelerate(Direction direction);
-	bool isOnGround = false;
 	MovementController movementController;
-	IdleState idleState;
-	RunningState runningState;
-
 	IPlayerState* GetCurrentState();
+	PlayerStateMachine stateMachine;
 };
 
 #endif // !Player_H

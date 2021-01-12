@@ -10,8 +10,11 @@ public:
 	virtual void Update(double DT) = 0;
 	virtual void Render(SDL_Rect pos);
 	virtual void HandleEvents(const SDL_Event& evt) = 0;
+	virtual void OnEnter() = 0;
+	virtual void OnExit() = 0;
 protected:
 	SDL_Texture* texture;
+
 };
 
 

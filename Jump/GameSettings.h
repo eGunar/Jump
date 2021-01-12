@@ -14,6 +14,7 @@ public:
 	const static int maxSpeed = 500;
 	const static int windowWidth = 1280;
 	const static int windowHeight = 720;
+	const static int JumpSpeed = -1200;
 };
 
 

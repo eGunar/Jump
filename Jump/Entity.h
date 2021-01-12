@@ -35,9 +35,9 @@ protected:
 	SDL_Rect position;
 	SDL_Rect nextPosition;
 	SDL_Rect previousPosition;
+	Physics* physics;
 
 private:
-	Physics* physics;
 	bool hasCollision = false;
 };
 
