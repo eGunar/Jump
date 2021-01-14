@@ -11,20 +11,23 @@ RunningState::RunningState(const char* texturePath, Player* p) : IPlayerState(te
 
 void RunningState::Update(double DT)
 {
+	if (!movementController->IsMoving())
+		player->SetState(PlayerStates::idle);
 }
 
 void RunningState::HandleEvents(const SDL_Event& evt)
 {
 	RunningState::HandleMovement(evt);
-	RunningState::HandleJump(evt);
 }
 
 void RunningState::OnEnter()
 {
+	
 }
 
 void RunningState::OnExit()
 {
+
 }
 
 void RunningState::HandleMovement(const SDL_Event& evt)
@@ -32,9 +35,6 @@ void RunningState::HandleMovement(const SDL_Event& evt)
 	switch (evt.type) {
 	case (SDL_KEYDOWN):
 		switch (evt.key.keysym.sym) {
-		case (GameSettings::moveDown):
-			movementController->StartMovingDown();
-			break;
 		case (GameSettings::moveRight):
 			movementController->StartMovingRight();
 			break;
@@ -51,30 +51,11 @@ void RunningState::HandleMovement(const SDL_Event& evt)
 		break;
 	case (SDL_KEYUP):
 		switch (evt.key.keysym.sym) {
-		case(GameSettings::moveDown):
-			movementController->StopMovingDown();
-			break;
-		case(GameSettings::moveUp):
-			movementController->StopMovingUp();
-			break;
 		case(GameSettings::moveRight):
 			movementController->StopMovingRight();
 			break;
 		case(GameSettings::moveLeft):
 			movementController->StopMovingLeft();
-			break;
-		}
-	}
-}
-
-void RunningState::HandleJump(const SDL_Event& evt)
-{
-	switch (evt.type) {
-	case (SDL_KEYDOWN):
-		switch (evt.key.keysym.sym) {
-		case (GameSettings::moveUp):
-		case (SDLK_SPACE):
-			player->SetState(PlayerStates::jump);
 			break;
 		}
 	}

@@ -78,3 +78,8 @@ bool MovementController::GetMovingLeft()
 {
     return movingLeft;
 }
+
+bool MovementController::IsMoving()
+{
+    return movingUp || movingDown || movingLeft || movingRight;
+}

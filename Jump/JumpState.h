@@ -14,7 +14,7 @@ public:
 protected:
 	void Update(double DT) override;
 	virtual void HandleEvents(const SDL_Event& evt) override;
-	virtual void HandleJump(const SDL_Event& evt) override;
+	virtual void HandleJump(const SDL_Event& evt);
 private:
 	bool hasDoubleJumped = false;
 };

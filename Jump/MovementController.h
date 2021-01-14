@@ -21,6 +21,8 @@ public:
 	bool GetMovingDown();
 	bool GetMovingRight();
 	bool GetMovingLeft();
+
+	bool IsMoving();
 private:
 	bool movingUp;
 	bool movingDown;

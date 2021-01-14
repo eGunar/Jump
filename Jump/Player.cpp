@@ -53,8 +53,13 @@ void Player::HandleEvents(const SDL_Event& evt)
 		switch (evt.key.keysym.sym) {
 		case (GameSettings::moveLeft):
 		case (GameSettings::moveRight):
-			if (physics->IsStandingOnBlock(this))
+			if (IsOnGround())
 				stateMachine.SetState(PlayerStates::run);
+			break;
+		case (GameSettings::moveUp):
+		case (SDLK_SPACE):
+			if (IsOnGround())
+				SetState(PlayerStates::jump);
 			break;
 		}
 

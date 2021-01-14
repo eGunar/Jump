@@ -19,7 +19,6 @@ public:
 protected:
 	Player* player;
 	virtual void HandleMovement(const SDL_Event& evt);
-	virtual void HandleJump(const SDL_Event& evt);
 private:
 	MovementController* movementController;
 };

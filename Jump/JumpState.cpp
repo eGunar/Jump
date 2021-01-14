@@ -20,7 +20,7 @@ void JumpState::OnExit()
 
 void JumpState::Update(double DT)
 {
-	if (player->IsOnGround()) {
+	if (player->IsOnGround() && player->GetVelocityY() != GameSettings::JumpSpeed) {
 		player->SetPreviousState();
 	}
 }
