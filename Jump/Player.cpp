@@ -10,7 +10,7 @@ Player::Player() : Entity(true, true, true) {
 
 	stateMachine = PlayerStateMachine(this);
 }
-Player::Player(int x, int y, int speed) {
+Player::Player(int x, int y) : Entity(true, true, true) {
 	texture = TextureManager::LoadTexture("assets/player.png");
 	position.h = 64;
 	position.w = 64;
