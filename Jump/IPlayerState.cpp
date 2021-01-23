@@ -11,5 +11,5 @@ IPlayerState::IPlayerState(const char* texturePath)
 
 void IPlayerState::Render(SDL_Rect pos)
 {
-	TextureManager::Draw(texture, pos, 0);
+	TextureManager::Draw(texture, pos, 0, SDL_FLIP_NONE);
 }

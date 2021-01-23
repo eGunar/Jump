@@ -12,7 +12,7 @@ public:
 	
 	static void Draw(SDL_Texture* texture, SDL_Rect src, SDL_Rect dest, double angle);
 
-	static void Draw(SDL_Texture* texture, SDL_Rect dest, double angle);
+	static void Draw(SDL_Texture* texture, SDL_Rect dest, double angle, SDL_RendererFlip flip);
 
 	static void Draw(SDL_Rect rect);
 

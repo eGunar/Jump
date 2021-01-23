@@ -63,7 +63,7 @@ void Entity::HandleEvents(const SDL_Event& evt)
 
 void Entity::Render()
 {
-	TextureManager::Draw(texture, position, 0);
+	TextureManager::Draw(texture, position, 0, SDL_FLIP_NONE);
 }
 
 void Entity::Clean()

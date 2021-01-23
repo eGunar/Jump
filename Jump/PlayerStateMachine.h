@@ -29,6 +29,7 @@ private:
 	IdleState* idleState;
 	JumpState* jumpState;
 	RunningState* runningState;
+
 };
 
 

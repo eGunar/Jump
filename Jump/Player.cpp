@@ -11,7 +11,7 @@ Player::Player() : Entity(true, true, true) {
 	stateMachine = PlayerStateMachine(this);
 }
 Player::Player(int x, int y) : Entity(true, true, true) {
-	texture = TextureManager::LoadTexture("assets/player.png");
+	texture = TextureManager::LoadTexture("assets/magician.png");
 	position.h = 64;
 	position.w = 64;
 	position.x = x;
@@ -79,14 +79,26 @@ void Player::SetPreviousState()
 void Player::HandleCollision(std::vector<Entity*> collidingEntities)
 {
 	for (Entity* entity : collidingEntities) {
-		if (Bottom() > entity->Top()) {
+		
+		if (Bottom() > entity->Top() && GetVelocityY() > 0) {
 			//if (Bottom() > entity->Top() && (Left() >= entity->Left() || Right() <= entity->Right())) {
 				//position = previousPosition;
 			position.y = entity->Top() - position.h;
 			velocity.y = 0;
 			break;
 		}
-
+		//if (Right() > entity->Left() && GetVelocityX() > 0) {
+		//	//if (Bottom() > entity->Top() && Right() > entity->Left()) {
+		//	// kolliderar till höger om spelaren
+		//	position.x = entity->Left() - position.w;
+		//	velocity.x = velocity.x > 0 ? 0 : velocity.x;
+		//	break;
+		//}
+		//if (entity->Right() > Left() && GetVelocityX() < 0) {
+		//	position.x = entity->Right();
+		//	velocity.x = 0;
+		//	break;
+		//}
 	}
 }
 

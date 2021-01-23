@@ -14,6 +14,7 @@ public:
 	// Inherited via IPlayerState
 	virtual void Update(double DT) override;
 	virtual void HandleEvents(const SDL_Event& evt) override;
+	virtual void Render(SDL_Rect pos) override;
 	virtual void OnEnter() override;
 	virtual void OnExit() override;
 protected:
@@ -21,6 +22,7 @@ protected:
 	virtual void HandleMovement(const SDL_Event& evt);
 private:
 	MovementController* movementController;
+	SDL_RendererFlip currentFlip;
 };
 
 

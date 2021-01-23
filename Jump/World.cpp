@@ -7,7 +7,9 @@ World::World()
 	for (int i = -20; i < 50; i++) {
 		Entities.push_back(new Block(32 * i, 600));
 	}
-	Entities.push_back(new Block(500, 546));
+	for (int i = 1; i < 50; i++) {
+		Entities.push_back(new Block(500, 32 * i));
+	}
 	
 }
 

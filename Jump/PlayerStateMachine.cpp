@@ -8,9 +8,9 @@ PlayerStateMachine::PlayerStateMachine(Player* p)
 {
 	previousState = nullptr;
 
-	runningState = new RunningState("assets/player_running.png", p);
-	jumpState = new JumpState("assets/player.png", p);
-	idleState = new IdleState("assets/player.png", p);
+	runningState = new RunningState("assets/magician.png", p);
+	jumpState = new JumpState("assets/magician.png", p);
+	idleState = new IdleState("assets/magician.png", p);
 	currentState = idleState;
 }
 
